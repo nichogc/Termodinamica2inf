@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termodinâmica — No Cotidiano e no Meio Ambiente</title>
+<meta name="description" content="Site sobre Termodinâmica: conceitos, leis, aplicações no dia a dia, energia solar e meio ambiente, com quiz interativo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+<div class="progresso-mobile" id="progressoMobile" aria-hidden="true"></div>
+
+<!-- ===== TERMÔMETRO DE PROGRESSO (indicador de rolagem) ===== -->
+<aside class="termometro" id="termometro" aria-hidden="true">
+  <div class="termometro-trilha">
+    <div class="termometro-preenchimento" id="termometroFill"></div>
+  </div>
+  <div class="termometro-marcas" id="termometroMarcas"></div>
+</aside>
+
+<!-- ===== CABEÇALHO / NAVEGAÇÃO ===== -->
+<header class="cabecalho" id="topo">
+  <div class="cabecalho-conteudo">
+    <a href="#topo" class="marca">
+      <img src="C:\Users\nicho\OneDrive\Desktop\2AnoInf\Seminario Física\termodinamica.png" alt="Logo Termodinâmica — No Cotidiano e Meio Ambiente" class="logo-img">
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="navMenu">
+      <a href="#inicio" class="nav-link">Início</a>
+      <a href="#intro" class="nav-link">O que é</a>
+      <a href="#conceitos" class="nav-link">Conceitos</a>
+      <a href="#leis" class="nav-link">Leis</a>
+      <a href="#aplicacoes" class="nav-link">Aplicações</a>
+      <a href="#solar" class="nav-link">Energia Solar</a>
+      <a href="#ambiente" class="nav-link">Meio Ambiente</a>
+      <a href="#quiz" class="nav-link nav-link-quiz">Quiz</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-conteudo">
+    <div class="hero-texto">
+      <p class="eyebrow">Física · Termodinâmica</p>
+      <h1 class="hero-titulo">Calor não é uma coisa.<br>É energia em movimento.</h1>
+      <p class="hero-sub">Termodinâmica é a área da física que explica por que o café esfria, por que a geladeira gela, por que o painel solar nunca aproveita 100% da luz do Sol e por que o planeta está esquentando. Este site percorre esses conceitos do básico ao avançado — com aplicações reais no dia a dia e no meio ambiente.</p>
+      <div class="hero-botoes">
+        <a href="#intro" class="botao botao-primario">Começar a explorar</a>
+        <a href="#quiz" class="botao botao-secundario">Ir direto ao quiz</a>
+      </div>
+    </div>
+    <div class="hero-demo">
+      <div class="demo-caixa">
+        <canvas id="canvasParticulas" width="360" height="280" aria-label="Simulação de partículas de gás se movendo conforme a temperatura"></canvas>
+        <div class="demo-leitura">
+          <span class="demo-temp-valor" id="tempValor">300 K</span>
+          <span class="demo-temp-desc" id="tempDesc">sistema moderado</span>
+        </div>
+      </div>
+      <div class="demo-controle">
+        <label for="sliderTemp">Temperatura da caixa</label>
+        <input type="range" id="sliderTemp" min="100" max="1000" step="10" value="300">
+        <p class="demo-legenda">Arraste o controle. As partículas simulam a energia cinética média — a própria definição física de temperatura.</p>
+        <p class="demo-nota">* simulação simplificada, apenas para fins ilustrativos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== O QUE É TERMODINÂMICA ===== -->
+<section class="section" id="intro">
+  <div class="section-conteudo secao-estreita">
+    <p class="rotulo">O que é</p>
+    <h2 class="section-titulo">Termodinâmica, em uma frase</h2>
+    <p class="paragrafo-grande">É o ramo da física que estuda como a energia se transforma e se desloca — entre corpos, entre sistemas, entre a Terra e o Sol — sempre que existe diferença de temperatura envolvida.</p>
+    <p class="paragrafo">O nome nasceu no século 19, junto com as primeiras máquinas a vapor: engenheiros queriam entender por que nenhum motor conseguia transformar todo o calor do carvão em movimento útil. A resposta a essa pergunta prática virou um conjunto de leis que hoje explica coisas muito além de máquinas — o metabolismo do corpo humano, o funcionamento de uma usina solar, e até por que o tempo parece andar só para frente.</p>
+    <div class="callout">
+      <p><strong>Por que isso importa aqui:</strong> as mesmas quatro leis que explicam uma máquina a vapor explicam por que sua geladeira gasta energia, por que um painel fotovoltaico tem um limite físico de eficiência, e por que o excesso de gases de efeito estufa está desequilibrando o balanço de energia do planeta. Termodinâmica não é só "física de motor" — é a física da energia em si.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONCEITOS FUNDAMENTAIS ===== -->
+<section class="section section-alt" id="conceitos">
+  <div class="section-conteudo">
+    <p class="rotulo">Do básico ao avançado</p>
+    <h2 class="section-titulo">Conceitos fundamentais</h2>
+    <p class="section-intro-texto">Cada card abaixo começa com a ideia simples. Clique em "Aprofundar" para ver a versão mais técnica, com definição formal e fórmula.</p>
+
+    <div class="cards-grid" id="conceitosGrid">
+
+      <article class="card-conceito">
+        <h3>Temperatura</h3>
+        <p class="simples">Uma medida de quão agitadas estão as partículas de uma substância. Quanto mais rápido elas se mexem, mais "quente" o corpo está — o que você sente como calor é, na origem, movimento molecular.</p>
+        <details>
+          <summary>Aprofundar</summary>
+          <p>Formalmente, a temperatura é proporcional à energia cinética média de translação das partículas de um sistema. Para um gás ideal monoatômico:</p>
+          <p class="formula">K<sub>méd</sub> = (3/2) · k<sub>B</sub> · T</p>
+          <p>onde k<sub>B</sub> é a constante de Boltzmann e T é a temperatura em kelvin — a escala que a termodinâmica usa nos cálculos, porque começa no zero absoluto (ausência teórica de agitação térmica), sem valores negativos.</p>
+        </details>
+      </article>
+
+      <article class="card-conceito">
+        <h3>Calor (Q) vs. Energia interna (U)</h3>
+        <p class="simples">Um corpo não "contém calor". Ele contém energia interna. Calor é o nome que damos à energia <em>em trânsito</em>, se movendo de um corpo mais quente para um mais frio — só existe enquanto está sendo transferida.</p>
+        <details>
+          <summary>Aprofundar</summary>
+          <p>Energia interna (U) é a soma de todas as energias cinéticas e potenciais das partículas que compõem o sistema. Calor (Q) e trabalho (W) são as duas únicas formas de <em>alterar</em> essa energia interna — é por isso que ambos entram na primeira lei da termodinâmica, mais adiante nesta página.</p>
+        </details>
+      </article>
+
+      <article class="card-conceito">
+        <h3>Trabalho termodinâmico (W)</h3>
+        <p class="simples">É energia transferida por uma ação mecânica macroscópica — como um gás se expandindo e empurrando um pistão, ou o próprio pistão comprimindo o gás.</p>
+        <details>
+          <summary>Aprofundar</summary>
+          <p>Para um processo à pressão constante:</p>
+          <p class="formula">W = p · ΔV</p>
+          <p>Convenção usual: W maior que zero quando o sistema realiza trabalho sobre a vizinhança (se expande); W menor que zero quando a vizinhança realiza trabalho sobre o sistema (o comprime). Para processos gerais, W é a integral de p·dV ao longo da transformação.</p>
+        </details>
+      </article>
+
+      <article class="card-conceito">
+        <h3>Sistema, vizinhança e fronteira</h3>
+        <p class="simples">Sistema é a parte do universo que você está estudando (o café na xícara). Vizinhança é tudo em volta. Fronteira é o que separa os dois — pode deixar passar energia, matéria, ambos ou nenhum.</p>
+        <details>
+          <summary>Aprofundar</summary>
+          <p><strong>Aberto:</strong> troca energia e matéria (uma panela sem tampa). <strong>Fechado:</strong> troca só energia (uma garrafa fechada esfriando). <strong>Isolado:</strong> não troca nada com o exterior — na prática, é uma idealização; uma garrafa térmica de boa qualidade é uma aproximação razoável.</p>
+        </details>
+      </article>
+
+      <article class="card-conceito">
+        <h3>Processos termodinâmicos</h3>
+        <p class="simples">Formas específicas de um sistema mudar de estado, cada uma mantendo uma grandeza fixa.</p>
+        <details>
+          <summary>Aprofundar</summary>
+          <ul class="lista-processos">
+            <li><strong>Isotérmico</strong> — temperatura constante.</li>
+            <li><strong>Isobárico</strong> — pressão constante (ex.: gás aquecendo dentro de um cilindro com pistão livre).</li>
+            <li><strong>Isovolumétrico (isocórico)</strong> — volume constante (ex.: panela de pressão travada, antes da válvula abrir).</li>
+            <li><strong>Adiabático</strong> — sem troca de calor com a vizinhança (Q = 0); toda mudança de energia interna vem do trabalho.</li>
+          </ul>
+        </details>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== AS LEIS DA TERMODINÂMICA ===== -->
+<section class="section" id="leis">
+  <div class="section-conteudo">
+    <p class="rotulo">A espinha dorsal da matéria</p>
+    <h2 class="section-titulo">As quatro leis da termodinâmica</h2>
+    <p class="section-intro-texto">Diferente de outras listas, esta numeração não é decorativa — é a ordem oficial com que as leis são nomeadas na física (incluindo a "lei zero", batizada depois das outras, mas colocada antes por ser mais fundamental).</p>
+
+    <div class="linha-do-tempo">
+
+      <div class="lei">
+        <div class="lei-marcador">Lei<br>Zero</div>
+        <div class="lei-corpo">
+          <h3>Equilíbrio térmico é transitivo</h3>
+          <p>Se o corpo A está em equilíbrio térmico com o corpo B, e B está em equilíbrio com C, então A está em equilíbrio com C. Parece óbvio — mas é essa regra que permite usar um termômetro: ele entra em equilíbrio com você, depois eu leio a escala, e sei que estamos "combinando" a mesma temperatura sem que precisemos nos tocar.</p>
+        </div>
+      </div>
+
+      <div class="lei">
+        <div class="lei-marcador">1ª<br>Lei</div>
+        <div class="lei-corpo">
+          <h3>Conservação de energia</h3>
+          <p class="formula">ΔU = Q − W</p>
+          <p>A variação da energia interna de um sistema é igual ao calor recebido menos o trabalho realizado por ele. É a mesma ideia de uma conta bancária: energia não aparece nem desaparece, só entra, sai ou muda de forma. Todo motor, geladeira e usina do planeta obedece a essa contabilidade.</p>
+        </div>
+      </div>
+
+      <div class="lei">
+        <div class="lei-marcador">2ª<br>Lei</div>
+        <div class="lei-corpo">
+          <h3>A entropia sempre cresce (no universo como um todo)</h3>
+          <p>Calor flui espontaneamente do quente para o frio, nunca o contrário sem ajuda externa. Consequência prática: <strong>nenhuma máquina térmica converte 100% do calor em trabalho útil</strong> — uma parte sempre é rejeitada para uma fonte fria. A eficiência máxima teórica (ciclo de Carnot) é:</p>
+          <p class="formula">η = 1 − (T<sub>fria</sub> / T<sub>quente</sub>)</p>
+          <p>Essa lei também é a razão física de o tempo "ter um sentido" — sistemas isolados tendem à desordem, não o contrário.</p>
+        </div>
+      </div>
+
+      <div class="lei">
+        <div class="lei-marcador">3ª<br>Lei</div>
+        <div class="lei-corpo">
+          <h3>O zero absoluto é inatingível</h3>
+          <p>À medida que a temperatura de um sistema se aproxima de 0 K, sua entropia se aproxima de um valor mínimo constante (zero, para um cristal perfeito). Mas alcançar exatamente 0 K exigiria um número infinito de etapas — por isso, na prática, é inatingível: sempre resta um resíduo de agitação térmica.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== APLICAÇÕES NO COTIDIANO ===== -->
+<section class="section section-alt" id="aplicacoes">
+  <div class="section-conteudo">
+    <p class="rotulo">A teoria na prática</p>
+    <h2 class="section-titulo">Aplicações no cotidiano</h2>
+    <p class="section-intro-texto">As mesmas quatro leis, repetidas em objetos que você usa todos os dias.</p>
+
+    <div class="cards-grid cards-grid-aplicacoes">
+
+      <article class="card-aplicacao">
+        <span class="card-tag">2ª lei em ação</span>
+        <h3>Geladeira e ar-condicionado</h3>
+        <p>Calor não flui sozinho do frio para o quente — por isso a geladeira precisa de trabalho elétrico para "empurrar" o calor de dentro (frio) para fora (quente), no sentido contrário ao espontâneo. É um ciclo de compressão e expansão de um fluido refrigerante, o inverso de uma máquina térmica comum.</p>
+      </article>
+
+      <article class="card-aplicacao">
+        <span class="card-tag">1ª e 2ª lei</span>
+        <h3>Motor de combustão interna</h3>
+        <p>Converte a energia química do combustível em trabalho mecânico, mas com perdas grandes: um motor a gasolina típico transforma só cerca de 25% a 35% dessa energia em movimento — o resto vira calor rejeitado, exatamente como a 2ª lei prevê.</p>
+      </article>
+
+      <article class="card-aplicacao">
+        <span class="card-tag">pressão e mudança de fase</span>
+        <h3>Panela de pressão</h3>
+        <p>Aumentar a pressão dentro da panela eleva o ponto de ebulição da água (que passa dos 100 °C ao nível do mar para bem mais que isso sob pressão). Água mais quente sem ferver cozinha os alimentos mais rápido.</p>
+      </article>
+
+      <article class="card-aplicacao">
+        <span class="card-tag">sistema aberto em equilíbrio dinâmico</span>
+        <h3>Corpo humano</h3>
+        <p>Seu corpo é um sistema termodinâmico aberto: converte energia química dos alimentos em calor e trabalho o tempo todo, e gasta parte dessa energia só para manter a temperatura em ~37 °C. Homeotermia é, literalmente, controle termodinâmico ativo.</p>
+      </article>
+
+      <article class="card-aplicacao">
+        <span class="card-tag">isolamento térmico</span>
+        <h3>Garrafa térmica</h3>
+        <p>Não "gera" frio nem calor — ela apenas dificulta ao máximo a troca de calor por condução, convecção e radiação (parede dupla a vácuo, superfície espelhada), atrasando a caminhada natural do sistema rumo ao equilíbrio com o ambiente.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== ENERGIA SOLAR ===== -->
+<section class="section" id="solar">
+  <div class="section-conteudo secao-estreita">
+    <p class="rotulo">Fontes renováveis</p>
+    <h2 class="section-titulo">Energia solar sob a ótica da termodinâmica</h2>
+
+    <p class="paragrafo">O Sol despeja energia sobre a Terra o tempo todo — a questão termodinâmica é como (e quanto) dessa energia conseguimos aproveitar.</p>
+
+    <div class="comparativo-solar">
+      <div class="comparativo-item">
+        <h3>Painel fotovoltaico</h3>
+        <p>Converte luz diretamente em eletricidade: fótons atingem um material semicondutor (silício) e liberam elétrons, gerando corrente elétrica. É majoritariamente um processo elétrico/quântico, não uma troca de calor — mas ainda esbarra em limites termodinâmicos de eficiência.</p>
+      </div>
+      <div class="comparativo-item">
+        <h3>Coletor solar térmico</h3>
+        <p>Este sim é termodinâmica pura: uma superfície escura absorve radiação solar e aquece diretamente um fluido (geralmente água), que circula para uso doméstico ou industrial. Sem conversão elétrica no meio — só absorção de radiação virando energia interna.</p>
+      </div>
+    </div>
+
+    <h3 class="subtitulo">Por que nenhum painel chega perto de 100%?</h3>
+    <p class="paragrafo">Painéis comerciais convertem, hoje, algo entre 15% e 22% da luz solar em eletricidade. Parte da explicação é tecnológica (materiais, reflexão, resistência elétrica), mas parte é termodinâmica de raiz: o Sol se comporta como uma fonte de energia a ~5.800 K irradiando para um painel muito mais frio — e, como a 2ª lei estabelece, nenhuma conversão de energia entre fontes de temperaturas diferentes é perfeita. Sempre sobra energia dissipada como calor.</p>
+
+    <h3 class="subtitulo">Renovável não é sinônimo de infinito</h3>
+    <p class="paragrafo">"Renovável" significa que a fonte se repõe em escala de tempo humana — o Sol continuará brilhando por bilhões de anos, ao contrário de um poço de petróleo. Isso não elimina as leis da termodinâmica: mesmo uma fonte renovável tem eficiência limitada de conversão e gera calor residual. A vantagem ambiental está em não emitir gases de efeito estufa extras no processo, não em burlar a física.</p>
+
+    <div class="callout callout-dado">
+      <p><strong>Brasil em contexto:</strong> o país tem uma das maiores médias de irradiação solar do planeta, mesmo em regiões "menos ensolaradas" como o Sul — muito acima da média de países europeus que já lideram em capacidade instalada. O potencial técnico é grande; o gargalo costuma ser de infraestrutura e investimento, não de disponibilidade de luz solar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TERMODINÂMICA E MEIO AMBIENTE ===== -->
+<section class="section section-alt" id="ambiente">
+  <div class="section-conteudo secao-estreita">
+    <p class="rotulo">Escala planetária</p>
+    <h2 class="section-titulo">Termodinâmica e meio ambiente</h2>
+
+    <h3 class="subtitulo">O efeito estufa (que, por si só, não é o vilão)</h3>
+    <p class="paragrafo">O mecanismo é puramente termodinâmico: a luz visível do Sol atravessa a atmosfera e aquece a superfície da Terra; a superfície, mais fria que o Sol, reemite essa energia como radiação infravermelha (comprimento de onda maior). Gases como CO₂, metano e vapor d'água absorvem parte dessa radiação e a reemitem em todas as direções — inclusive de volta para a superfície.</p>
+
+    <div class="estufa-diagrama" aria-hidden="true">
+      <span class="estufa-legenda estufa-legenda-sol">Sol</span>
+      <span class="estufa-legenda estufa-legenda-gases">Gases do efeito estufa</span>
+      <span class="estufa-legenda estufa-legenda-solo">Superfície da Terra</span>
+      <div class="estufa-linha-gases"></div>
+      <div class="estufa-linha-solo"></div>
+      <div class="raio raio-sol raio-sol-1"></div>
+      <div class="raio raio-sol raio-sol-2"></div>
+      <div class="raio raio-sol raio-sol-3"></div>
+      <div class="raio raio-ir raio-ir-1"></div>
+      <div class="raio raio-ir raio-ir-2"></div>
+      <div class="raio raio-escape"></div>
+    </div>
+
+    <p class="paragrafo">Sem esse efeito, a temperatura média da Terra seria de aproximadamente −18 °C em vez dos atuais ~15 °C — o efeito estufa natural é o que torna o planeta habitável. O problema não é o mecanismo, é a <strong>intensidade</strong>: emissões humanas de gases de efeito estufa aumentaram a concentração desses gases na atmosfera, retendo mais energia do que o planeta consegue reemitir para o espaço, e desequilibrando o balanço energético global — é assim que se define, tecnicamente, o aquecimento global.</p>
+
+    <h3 class="subtitulo">Entropia e sustentabilidade</h3>
+    <p class="paragrafo">Aqui a 2ª lei entra de um jeito que costuma passar despercebido: falamos em "produzir energia", mas isso é, tecnicamente, impreciso. Energia não se cria — nós apenas convertemos energia concentrada e organizada (combustível, luz solar, energia nuclear) em formas mais dispersas e menos aproveitáveis, quase sempre calor de baixa temperatura. Cada conversão aumenta a entropia total do universo, e é exatamente essa perda que define o limite de eficiência de qualquer usina, motor ou painel solar.</p>
+    <p class="paragrafo">É por isso que "eficiência energética" e "redução de desperdício" não são só metas ambientais — são, no fundo, tentativas de trabalhar dentro do limite que a própria termodinâmica impõe, em vez de fingir que ele não existe.</p>
+  </div>
+</section>
+
+<!-- ===== QUIZ ===== -->
+<section class="section quiz-section" id="quiz">
+  <div class="section-conteudo secao-estreita">
+    <p class="rotulo">Teste o que você aprendeu</p>
+    <h2 class="section-titulo">Quiz de Termodinâmica</h2>
+    <p class="section-intro-texto">10 perguntas cobrindo tudo que foi visto acima. Selecione as respostas e clique em "Corrigir" no final.</p>
+
+    <form id="quizForm" class="quiz-form">
+      <div id="quizContainer" class="quiz-container"><!-- perguntas geradas via JavaScript --></div>
+
+      <div class="quiz-acoes">
+        <button type="submit" class="botao botao-primario" id="btnCorrigir">Corrigir respostas</button>
+        <button type="button" class="botao botao-secundario" id="btnRefazer" hidden>Refazer quiz</button>
+      </div>
+
+      <div class="quiz-resultado" id="quizResultado" role="status" aria-live="polite" hidden></div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== RODAPÉ ===== -->
+<footer class="rodape">
+  <div class="rodape-conteudo">
+    <img src="assets/logo.jpeg" alt="Logo Termodinâmica" class="logo-img logo-rodape">
+    <div class="rodape-texto">
+      <p>Trabalho de Física — Termodinâmica no Cotidiano e no Meio Ambiente</p>
+      <p class="rodape-nome">Realizado por: <em>[seu nome aqui]</em></p>
+    </div>
+    <a href="#topo" class="voltar-topo">Voltar ao topo ↑</a>
+  </div>
+</footer>
+
+<script src="Quiz.js"></script>
+</body>
+</html>
